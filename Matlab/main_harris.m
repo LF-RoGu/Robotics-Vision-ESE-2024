@@ -2,7 +2,7 @@ clear all;
 close all;
 clc;
 % Read the image
-img = imread('data/image_left_unrect/image_left_unrect_83.jpg');
+img = imread('data/image_left_unrect/image_left_unrect_143.jpg');
 
 % Convert the image to grayscale
 gray_img = rgb2gray(img);
@@ -17,7 +17,7 @@ gauss_img = ifilter_gauss(gray_img, N);
 % Define the region of interest (ROI)
 % Examples:
 % [x, y, width, height]
-roi = [700, 200, 600, 500]; % Specific area
+roi = [700, 0, 600, 800]; % Specific area
 
 % Apply Harris filter within the ROI
 nfeat = 200; % Number of features to extract
