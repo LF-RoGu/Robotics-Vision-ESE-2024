@@ -3,7 +3,7 @@ close all;
 clc;
 
 % Read the image
-img = imread('data/image_left_unrect/image_left_unrect_83.jpg');
+img = imread('data/image_left_unrect/image_left_unrect_143.jpg');
 
 % Convert the image to grayscale
 gray_img = rgb2gray(img);
@@ -58,7 +58,6 @@ line_features = [];
 % Loop over the detected lines and display them
 for k = 1:length(lines)
     xy = [lines(k).point1; lines(k).point2];
-    plot(xy(:,1), xy(:,2), 'LineWidth', 2, 'Color', 'green');
 
     % Plot beginnings and ends of lines
     plot(xy(1,1), xy(1,2), 'x', 'LineWidth', 2, 'Color', 'yellow');
@@ -68,12 +67,19 @@ for k = 1:length(lines)
     len = norm(lines(k).point1 - lines(k).point2);
     theta = atan2((lines(k).point2(2) - lines(k).point1(2)), (lines(k).point2(1) - lines(k).point1(1))) * 180 / pi;
 
+    % Print the coordinates of the points
+    fprintf('Line %d: Point 1 (X, Y) = (%.2f, %.2f), Point 2 (X, Y) = (%.2f, %.2f), Angle = %.2f degrees\n', ...
+        k, xy(1,1), xy(1,2), xy(2,1), xy(2,2), theta);
+
+    % Set color based on angle
+    if theta < 0
+        plot(xy(:,1), xy(:,2), 'LineWidth', 2, 'Color', 'red');
+    else
+        plot(xy(:,1), xy(:,2), 'LineWidth', 2, 'Color', 'green');
+    end
+
     % Store the features
     line_features = [line_features; len, theta];
 end
 title('Detected Lines');
 hold off;
-
-% Display the extracted features
-disp('Extracted Line Features (Length, Angle):');
-disp(line_features);
