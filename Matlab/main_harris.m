@@ -20,10 +20,7 @@ imwrite(uint8(gauss_img), 'gaussian_filtered_image.png');
 % Define the region of interest (ROI)
 % Examples:
 % [x, y, width, height]
-% roi = [100, 100, 200, 200]; % Central region
-roi = [700, 200, 700, 500]; % Specific area
-% roi = [0, size(gray_img, 1) - 600, size(gray_img, 2), 100]; % Entire width, specific height
-% roi = [size(gray_img, 2) - 600, size(gray_img, 1) - 600, size(gray_img, 2), 100]; % Bottom right corner
+roi = [700, 200, 600, 500]; % Specific area
 
 % Apply Harris filter within the ROI
 nfeat = 100; % Number of features to extract
